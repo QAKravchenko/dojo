@@ -31,6 +31,7 @@ test.describe('New user registration', () => {
         await expect(page).toHaveURL('/articles/register');
 
         await page.getByTestId('auth-username').fill('Svyatoslav');
+        await expect(page.getByTestId('auth-username')).toHaveValue('Svyatoslav');
         await page.getByTestId('auth-email').fill('qa@gmail.com');
         await page.getByTestId('auth-password').fill('Testing1');
         await page.getByTestId('register-confirm-password').fill('Testing1');
