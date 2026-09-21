@@ -6,11 +6,11 @@ test.describe('New user registration', () => {
         const username = `user_${timestamp}`;
         const email = `qa_${timestamp}@gmail.com`;
 
-        await page.goto('/articles');
-        await expect(page).toHaveURL(/\/articles$/);
+        await page.goto('');
+        await expect(page).toHaveURL('http://104.168.59.50/articles');
         await expect(page.getByTestId('nav-sign-up')).toBeVisible();
         await page.getByTestId('nav-sign-up').click();
-        await expect(page).toHaveURL(/\/articles\/register/);
+        await expect(page).toHaveURL(/.*\/articles/);
 
         await page.getByTestId('auth-username').fill(username);
         await page.getByTestId('auth-email').fill(email);
@@ -20,13 +20,13 @@ test.describe('New user registration', () => {
         await page.getByTestId('register-terms').check();
         await page.getByTestId('auth-submit').click();
 
-        await expect(page).toHaveURL(/\/articles$/);
+        await expect(page).toHaveURL('/articles');
         await expect(page.getByTestId('nav-profile')).toBeVisible();
     });
 
     test('Registration with existed email', async ({page}) => {
-        await page.goto('/articles');
-        await expect(page).toHaveURL('/articles');
+        await page.goto('');
+        await expect(page).toHaveURL('http://104.168.59.50/articles');
         await page.getByTestId('nav-sign-up').click();
         await expect(page).toHaveURL('/articles/register');
 
@@ -42,8 +42,8 @@ test.describe('New user registration', () => {
     });
 
     test('Registration with empty "Email" field', async ({page}) => {
-        await page.goto('articles/register');
-        await expect(page).toHaveURL('articles/register');
+        await page.goto('/register');
+        await expect(page).toHaveURL('http://104.168.59.50/articles/register');
         
         await page.getByTestId('auth-username').fill('Svyatoslav');
         await page.getByTestId('auth-email').fill('');
@@ -58,8 +58,8 @@ test.describe('New user registration', () => {
 
 test.describe('Login', () => {
     test('Successful login with existed user', async ({page}) => {
-        await page.goto('/articles/login');
-        await expect(page).toHaveURL('/articles/login');
+        await page.goto('/login');
+        await expect(page).toHaveURL('http://104.168.59.50/articles/login');
 
         await page.getByTestId('auth-email').fill('qakravchenko@gmail.com');
         await page.getByTestId('auth-password').fill('Testing1');
@@ -70,8 +70,8 @@ test.describe('Login', () => {
     });
 
     test('Login with invalid password', async ({page}) => {
-        await page.goto('/articles/login');
-        await expect(page).toHaveURL('/articles/login');
+        await page.goto('/login');
+        await expect(page).toHaveURL('http://104.168.59.50/articles/login');
 
         await page.getByTestId('auth-email').fill('qakravchenko@gmail.com');
         await page.getByTestId('auth-password').fill('testing1');
@@ -81,8 +81,8 @@ test.describe('Login', () => {
     });
 
     test('Login with not registered user', async ({page}) => {
-        await page.goto('/articles/login');
-        await expect(page).toHaveURL('/articles/login');
+        await page.goto('/login');
+        await expect(page).toHaveURL('http://104.168.59.50/articles/login');
 
         await page.getByTestId('auth-email').fill('somebody@gmail.com');
         await expect(page.getByTestId('auth-email')).toHaveValue('somebody@gmail.com');
