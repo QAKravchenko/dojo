@@ -1,5 +1,7 @@
 import { test, expect } from '@playwright/test';
 
+test.use({ storageState: { cookies: [], origins: [] } });
+
 test.describe('New user registration', () => {
     test('Successful registration with valid data', async ({ page }) => {
         const timestamp = Date.now();

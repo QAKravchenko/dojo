@@ -1,5 +1,7 @@
 import { test, expect, Page } from '@playwright/test';
 
+test.use({ storageState: { cookies: [], origins: [] } });
+
 // 1. Функция авторизации на Dojo
 async function login(page: Page, email: string, password: string) {
   await page.goto('http://104.168.59.50/articles');
