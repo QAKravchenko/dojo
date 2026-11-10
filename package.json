@@ -1,8 +1,7 @@
 {
   "name": "dojo",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "E2E playwright tests",
   "scripts": {},
   "keywords": [],
   "type": "commonjs",
