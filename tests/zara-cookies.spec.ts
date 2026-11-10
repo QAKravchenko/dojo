@@ -4,6 +4,8 @@ import { test, expect } from '@playwright/test';
 test.use({ storageState: { cookies: [], origins: [] } });
 
 test('прийняття та зміна cookies', async ({ page, context }) => {
+  test.skip(!!process.env.CI, 'Zara Akamai blocks GitHub Actions datacenter IPs');
+
   // Крок 1. Відкриваємо сайт Zara за повною адресою
   await page.goto('https://www.zara.com/es/en/');
 

@@ -12,6 +12,17 @@ async function login(page: Page, email: string, password: string) {
 
   // Проверка успешной авторизации
   await expect(page.getByTestId('nav-profile')).toContainText('olena');
+
+  // Гарантируем подписку на собственные статьи olena, чтобы они отображались в Your Feed
+  await page.evaluate(async () => {
+    const token = localStorage.getItem('qa-dojo.token');
+    if (token) {
+      await fetch('/api/profiles/olena/follow', {
+        method: 'POST',
+        headers: { Authorization: `Token ${token}` },
+      });
+    }
+  });
 }
 
 // 2. Функция создания одной статьи

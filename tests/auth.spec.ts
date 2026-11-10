@@ -34,7 +34,7 @@ test.describe('New user registration', () => {
 
         await page.getByTestId('auth-username').fill('Svyatoslav');
         await expect(page.getByTestId('auth-username')).toHaveValue('Svyatoslav');
-        await page.getByTestId('auth-email').fill('qa@gmail.com');
+        await page.getByTestId('auth-email').fill('olena@example.com');
         await page.getByTestId('auth-password').fill('Testing1');
         await page.getByTestId('register-confirm-password').fill('Testing1');
         await page.getByTestId('register-terms').check();
@@ -63,12 +63,12 @@ test.describe('Login', () => {
         await page.goto('/login');
         await expect(page).toHaveURL('http://104.168.59.50/articles/login');
 
-        await page.getByTestId('auth-email').fill('qakravchenko@gmail.com');
-        await page.getByTestId('auth-password').fill('Testing1');
+        await page.getByTestId('auth-email').fill('olena@example.com');
+        await page.getByTestId('auth-password').fill('password');
         await page.getByTestId('auth-submit').click();     
 
         await expect(page).toHaveURL('/articles');
-        await expect(page.getByTestId('nav-profile')).toContainText('Svyatoslav');
+        await expect(page.getByTestId('nav-profile')).toContainText('olena');
     });
 
     test('Login with invalid password', async ({page}) => {
